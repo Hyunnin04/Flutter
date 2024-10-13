@@ -29,8 +29,7 @@ class Robot {
     }
   }
 
-  // Execute a list of commands (R, L, A)
-  void executeInstructions(String instructions) {
+  void Instructions(String instructions) {
     for (var command in instructions.split('')) {
       switch (command) {
         case 'R':
@@ -52,6 +51,6 @@ class Robot {
 void main() {
   Robot robot = Robot(7, 3, Direction.NORTH);
   String instructions = "RAALAL";
-  robot.executeInstructions(instructions);
+  robot.Instructions(instructions);
   robot.Position(); 
 }
