@@ -1,37 +1,38 @@
-enum direction {North, East, South, West}
-class robot{
+enum Direction { NORTH, EAST, SOUTH, WEST }
+class Robot {
   int x;
   int y;
-  direction dir;
+  Direction direction;
 
-  robot (this.x, this.y, this.dir);
-
+  Robot(this.x, this.y, this.direction);
+  
   void turnRight() {
-    dir = direction.values[(dir.index + 1)];
+    direction = Direction.values[(direction.index + 1) % 4];
   }
-
   void turnLeft() {
-    dir = direction.values[(dir.index - 1)];
+    direction = Direction.values[(direction.index - 1 + 4) % 4];
   }
-    void advance() {
-    switch (dir) {
-      case direction.North:
-        y += 1;  // Move up
+  void advance() {
+    switch (direction) {
+      case Direction.NORTH:
+        y += 1;
         break;
-      case direction.East:
-        x += 1;  // Move right 
+      case Direction.EAST:
+        x += 1;
         break;
-      case direction.South:
-        y -= 1;  // Move down
+      case Direction.SOUTH:
+        y -= 1;
         break;
-      case direction.West:
-        x -= 1;  // Move left
+      case Direction.WEST:
+        x -= 1;
         break;
     }
   }
 
-  void instruction(var command){
-    switch (command) {
+  // Execute a list of commands (R, L, A)
+  void executeInstructions(String instructions) {
+    for (var command in instructions.split('')) {
+      switch (command) {
         case 'R':
           turnRight();
           break;
@@ -41,17 +42,16 @@ class robot{
         case 'A':
           advance();
           break;
-        default:
-          print('Invalid command');
+      }
     }
   }
-
-  void position(){
-    print('position: {$x,$y}, Direction: $dir');
+  void Position() {
+    print('Current Position: {$x, $y}, Facing: $direction');
   }
-
 }
-
 void main() {
-
+  Robot robot = Robot(7, 3, Direction.NORTH);
+  String instructions = "RAALAL";
+  robot.executeInstructions(instructions);
+  robot.Position(); 
 }
