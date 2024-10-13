@@ -6,11 +6,11 @@ class Robot {
   Robot(this.x, this.y, this.direction);
   void turnRight() {
     List<Direction> directions = Direction.values;
-    direction = directions[(direction.index + 1) % directions.length]; 
+    direction = directions[(direction.index + 1) % 4]; 
   }
   void turnLeft() {
     List<Direction> directions = Direction.values;
-    direction = directions[(direction.index - 1 + directions.length) % directions.length]; 
+    direction = directions[(direction.index - 1 + 4) % 4]; 
   }
   void advance() {
     switch (direction) {
